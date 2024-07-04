@@ -1,0 +1,44 @@
+﻿@model PatientManagementSoftware.Models.AppointmentViewModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper p-5">
+
+    <h2 class="form-signin-heading">Book Your Doctor Appointment</h2>
+
+    @using (Html.BeginForm("UpdateAppointment", "Appointment", FormMethod.Post, new { @class = "form-signin" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.AppointmentID)
+        <h2 class="form-signin-heading"></h2>
+
+        <div class="form-group mb-2">
+            @Html.LabelFor(model => model.PatientID, new { @class = "sr-only" })
+            @Html.DropDownListFor(model => model.PatientID, new SelectList(ViewBag.PatientList, "PatientID", "Name"), new { @class = "form-control", type = "text" , required = "required" })
+        </div>
+
+        <div class="form-group mb-2">
+            @Html.LabelFor(model => model.DoctorID, new { @class = "sr-only" })
+            @Html.DropDownListFor(model => model.DoctorID, new SelectList(ViewBag.DoctorList, "DoctorID", "Name"), new { @class = "form-control", type = "text" , required = "required" })
+        </div>
+
+        <div class="form-group mb-2">
+            @Html.LabelFor(model => model.AppointmentDateTime, new { @class = "sr-only" })
+            @Html.TextBoxFor(model => model.AppointmentDateTime, new { @class = "form-control", required = "required" })
+        </div>
+
+        <div class="form-group mb-2">
+            @Html.LabelFor(model => model.Reason, new { @class = "sr-only" })
+            @Html.TextBoxFor(model => model.Reason, new { @class = "form-control", placeholder = "Reason", required = "required" })
+        </div>
+
+        <div class="form-group mb-2">
+            @Html.LabelFor(model => model.Status, new { @class = "sr-only" })
+            @Html.TextBoxFor(model => model.Status, new { @class = "form-control", placeholder = "Status", required = "required" })
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block mb-2" type="submit">Submit</button>
+    }
+    </div>

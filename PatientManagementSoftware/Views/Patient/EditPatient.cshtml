@@ -1,0 +1,56 @@
+﻿@model PatientManagementSoftware.Models.PatientViewModel
+@{
+    ViewBag.Title = "EditPatient";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper p-5">
+    <h2>Edit Patient</h2>
+
+    @using (Html.BeginForm("EditPatient", "Patient")) // Specify controller and action
+    {
+        @Html.AntiForgeryToken() // Add CSRF protection
+        @Html.HiddenFor(model => model.PatientID) // Include hidden field for PatientID
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, "Name:")
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.DateOfBirth, "Date of Birth:", new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.DateOfBirth, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "form-text text-muted" })
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Address, "Address:")
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.ContactNumber, "ContactNumber:")
+            @Html.TextBoxFor(m => m.ContactNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ContactNumber, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Gender, "Gender:")
+            @Html.DropDownListFor(m => m.Gender, new SelectList(new[]
+                {
+                    new SelectListItem { Text = "Male", Value = "Male" },
+                    new SelectListItem { Text = "Female", Value = "Female" },
+                    new SelectListItem { Text = "Other", Value = "Other" }
+                }, "Value", "Text"), "Select Gender", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+        </div>
+
+        <input type="submit" value="Update Patient" class="btn btn-primary" />
+
+    }
+</div>
+

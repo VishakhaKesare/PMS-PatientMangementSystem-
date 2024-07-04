@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="content-wrapper">
+    <!-- DASHBOARD HEADER -->
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6 row pl-3">
+                    <div class="flex-column">
+                        <h1 class="mr-3">Dashboard</h1>
+                    </div>
+                    <div class="flex-column">
+                        <ol class="breadcrumb float-sm-left ml-0">
+                            <li class="breadcrumb-item"><a href=@Url.Action("Index","Home")>Home</a></li>
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                    </div>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- DASHBOARD HEADER -->
+
+
+
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>@ViewBag.TotalAppointments</h3>
+                        </div>
+                        <div class="panel-footer back-footer-green">
+                            Daily Patient Visits
+                        </div>
+                        <div class="icon">
+                            <i class="far fa-address-book"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>@ViewBag.TotalDoctors</h3>
+                        </div>
+                        <div class="panel-footer back-footer-blue">
+                            Doctors
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-diagnoses"></i>
+                            <!-- <i class="fas fa-user-alt"></i> -->
+                        </div>
+                        <a href="#" class="small-box-footer">View More<i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>@ViewBag.TotalPatients</h3>
+                        </div>
+                        <div class="panel-footer back-footer-red">
+                            Patients
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-users"></i>
+                            <!-- <i class="ion ion-person-add"></i> -->
+                        </div>
+                        <a href="#" class="small-box-footer">View More<i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>@ViewBag.TotalBilling</h3>
+                        </div>
+                        <div class="panel-footer back-footer-brown">
+                            Total Income
+                        </div>
+                        <div class="icon">
+                            <!-- <i class="ion ion-pie-graph"></i> -->
+                            <i class="fas fa-comment-dollar"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">View More<i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+        </div>
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <!-- Custom tabs (Charts with tabs)-->
+        </div>
+
+    </section>
+</div>

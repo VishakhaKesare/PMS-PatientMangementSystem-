@@ -1,0 +1,109 @@
+﻿@model PatientManagementSoftware.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null; // We are not using a layout for this view
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/assets/css/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+
+
+
+
+
+    <title>Patient Management Register Page </title>
+</head>
+<body>
+    <section class="form-01-main">
+        <div class="form-cover">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-sub-main">
+                            <div class="_main_head_as">
+                                <a href="#">
+                                    <img src="~/Content/assets/images/vector.png" alt="Logo">
+                                </a>
+                            </div>
+
+                            @using (Html.BeginForm("Admin_Registration", "Login", FormMethod.Post)) // Using the form-signin class
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <h2 class="form-signin-heading">Login</h2>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Username, new { @class = "sr-only" })
+                                    @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Full Name", required = "required", autofocus = "autofocus" })
+                                    <i class="fa fa-user field-icon"></i> <!-- User icon -->
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email, new { @class = "sr-only" })
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Email", required = "required", autofocus = "autofocus" })
+                                    <i class="fa fa-user field-icon"></i>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MobileNo, new { @class = "sr-only" })
+                                    @Html.TextBoxFor(model => model.MobileNo, new { @class = "form-control", placeholder = "MobileNo", required = "required", autofocus = "autofocus" })
+                                    @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                                    <i class="fa fa-user field-icon"></i>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Password, new { @class = "sr-only" })
+                                    @Html.PasswordFor(model => model.Password, new
+                                {
+                                   @class = "form-control",
+                                   placeholder = "Enter Password",
+                                   pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}",
+                                   title = "Must contain at least one " +
+                                   "number and one uppercase and lowercase letter, " +
+                                   "and at least 8 or more characters",
+                                   required = "required"
+                               })
+                                    <i class="fas fa-lock toggle-password field-icon" toggle="#password"></i><!-- Eye icon -->
+                                    @* <span class="fas fa-lock"></span>*@
+                                </div>
+
+                                <div class="checkbox mb-3">
+                                    <label>
+                                        @Html.CheckBoxFor(model => model.RememberMe) Remember Me
+                                    </label>
+                                </div>
+                                <div>
+                                    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+                                </div>
+                            }
+                            <div class="mt-3">
+                                <!-- Add margin top -->
+                                <a href="@Url.Action("Index", "Login")">
+                                    <button class="btn btn-lg btn-primary btn-block" type="button">Sign In</button>
+                                </a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+</html>

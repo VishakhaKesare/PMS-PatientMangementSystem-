@@ -1,0 +1,134 @@
+﻿@*@model PatientManagementSoftware.Models.DoctorsViewModel*@
+@model List<PatientManagementSoftware.Models.DoctorViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    /* Custom table styles */
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+        .table thead {
+            background-color: #007bff; /* Blue header background */
+            color: #fff; /* White text */
+        }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6; /* Light gray border bottom */
+        }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f8f9fa; /* Light gray background for odd rows */
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #e9ecef; /* Light blue background on hover */
+    }
+
+    .btn {
+        border-radius: 20px;
+        padding: 8px 20px;
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Blue button background */
+        border-color: #007bff; /* Blue button border */
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Dark blue on hover */
+            border-color: #0056b3; /* Dark blue on hover */
+        }
+
+    .btn-danger {
+        background-color: #dc3545; /* Red button background */
+        border-color: #dc3545; /* Red button border */
+    }
+
+        .btn-danger:hover {
+            background-color: #c82333; /* Dark red on hover */
+            border-color: #bd2130; /* Dark red on hover */
+        }
+
+    /* Additional styles for the whole page */
+    body {
+        background-color: #f8f9fa; /* Light gray background */
+        color: #495057; /* Dark gray text */
+        font-family: Arial, sans-serif; /* Use a fallback font */
+    }
+
+    .content-wrapper {
+        background-color: #d8e5f4; /* White content background */
+        border-radius: 8px; /* Rounded corners */
+        padding: 20px; /* Add some padding */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add shadow */
+    }
+
+    h2 {
+        color: #007bff; /* Blue heading text */
+        margin-bottom: 20px; /* Add space below headings */
+    }
+</style>
+
+
+<div class="content-wrapper p-5">
+    <h2>Doctors List</h2>
+    <br>
+    <div class="row" style="margin-bottom:10px;">
+
+        <div class="col-2">
+            <a href="@Url.Action("Register", "Doctor")" class="btn btn-primary">Register Doctor</a>
+        </div>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Doctor ID</th>
+                <th>Name</th>
+                <th>Specialization</th>
+                <th>Contact Number</th>
+                <th>Availability</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var doctor in Model)
+             {
+                <tr>
+                    <td>@doctor.DoctorID</td>
+                    <td>@doctor.Name</td>
+                    <td>@doctor.Specialization</td>
+                    <td>@doctor.ContactNumber</td>
+                    <td>@doctor.Availability</td>
+                    <td>
+
+                        <a href="@Url.Action("EditDoctor", "Doctor", new { doctorID = doctor.DoctorID })" class="btn btn-info">Edit</a>
+
+                        <form method="post" action="@Url.Action("DeleteDoctor", "Doctor", new { doctorID = doctor.DoctorID  })" onsubmit="return confirm('Are you sure you want to delete this invoice?');" style="display: inline-block; margin-right: 3px;">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+
+
+                    </td>
+
+                </tr>
+             }
+        </tbody>
+    </table>
+</div> 

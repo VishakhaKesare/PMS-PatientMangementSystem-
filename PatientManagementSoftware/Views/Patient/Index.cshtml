@@ -1,0 +1,57 @@
+﻿@*@model PatientManagementSoftware.Models.DoctorsViewModel*@
+@model List<PatientManagementSoftware.Models.PatientViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper p-5">
+    <h2>Patients List</h2>
+    <br>
+    <div class="row" style="margin-bottom:10px;">
+
+        <div class="col-2">
+            <a href="@Url.Action("PatientRegister", "Patient")" class="btn btn-primary">Register Patients</a>
+        </div>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th> ID</th>
+                <th>Name</th>
+                <th>DateOfBirth </th>
+                <th>Address</th>
+                <th>ContactNumber</th>
+                <th>Gender </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Patient in Model)
+            {
+                <tr>
+                    <td>@Patient.PatientID</td>
+                    <td>@Patient.Name</td>
+                    <td>@Patient.DateOfBirth </td>
+                    <td>@Patient.Address</td>
+                    <td>@Patient.ContactNumber</td>
+                    <td>@Patient.Gender</td>
+
+
+                    <td>
+
+                        <a href="@Url.Action("EditPatient", "Patient", new { patientID = Patient.PatientID })" class="btn btn-info">Edit</a>
+
+                        <form method="post" action="@Url.Action("DeletePatient", "Patient", new { patientId = Patient.PatientID })" onsubmit="return confirm('Are you sure you want to delete this invoice?');" style="display: inline-block; margin-right: 3px;">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+
+
+                    </td>
+
+                </tr>
+             }
+        </tbody>
+    </table>
+</div>

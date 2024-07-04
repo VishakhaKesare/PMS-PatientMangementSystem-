@@ -1,0 +1,124 @@
+﻿
+@model PatientManagementSoftware.Models.DoctorViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<style>
+    /* Custom table styles */
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+        .table thead {
+            background-color: #007bff; /* Blue header background */
+            color: #fff; /* White text */
+        }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6; /* Light gray border bottom */
+        }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f8f9fa; /* Light gray background for odd rows */
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #e9ecef; /* Light blue background on hover */
+    }
+
+    .btn {
+        border-radius: 20px;
+        padding: 8px 20px;
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Blue button background */
+        border-color: #007bff; /* Blue button border */
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Dark blue on hover */
+            border-color: #0056b3; /* Dark blue on hover */
+        }
+
+    .btn-danger {
+        background-color: #dc3545; /* Red button background */
+        border-color: #dc3545; /* Red button border */
+    }
+
+        .btn-danger:hover {
+            background-color: #c82333; /* Dark red on hover */
+            border-color: #bd2130; /* Dark red on hover */
+        }
+
+    /* Additional styles for the whole page */
+    body {
+        background-color: #f8f9fa; /* Light gray background */
+        color: #495057; /* Dark gray text */
+        font-family: Arial, sans-serif; /* Use a fallback font */
+    }
+
+    .content-wrapper {
+        background-color: #d8e5f4; /* White content background */
+        border-radius: 8px; /* Rounded corners */
+        padding: 20px; /* Add some padding */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add shadow */
+    }
+
+    h2 {
+        color: #007bff; /* Blue heading text */
+        margin-bottom: 20px; /* Add space below headings */
+    }
+</style>
+
+<div class="content-wrapper p-5">
+
+    <h2>Doctor Registration</h2>
+
+    @using (Html.BeginForm("SaveDoctor", "Doctor")) // Specify controller and action
+    {
+        @Html.AntiForgeryToken() // Add CSRF protection
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, "Name:")
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger", required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Specialization, "Specialization:")
+            @Html.TextBoxFor(m => m.Specialization, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Specialization, "", new { @class = "text-danger", required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.ContactNumber, "Contact Number:")
+            @Html.TextBoxFor(m => m.ContactNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ContactNumber, "", new { @class = "text-danger", required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Availability, "Availability:")
+            @Html.TextBoxFor(m => m.Availability, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Availability, "", new { @class = "text-danger", required = "required" })
+        </div>
+
+        <input type="submit" value="Save Doctor" class="btn btn-primary" />
+
+    }
+</div>

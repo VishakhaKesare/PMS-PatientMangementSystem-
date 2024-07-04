@@ -1,0 +1,55 @@
+﻿@model List<PatientManagementSoftware.Models.AppointmentViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper p-5">
+
+    <h2>Appointments</h2>
+    <br />
+    <div class="row" style="margin-bottom:10px;">
+
+        <div class="col-2">
+            <a href="@Url.Action("AppointmentRegister", "Appointment")" class="btn btn-primary">Book Appointment</a>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Appointment Id</th>
+                <th>Patient Name</th>
+                <th>Doctor Name</th>
+                <th>Appointment Date Time</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Action</th>
+                <!-- Add other demographic information columns here if needed -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Appointments in Model)
+            {
+                <tr>
+                    <td>@Appointments.AppointmentID</td>
+                    <td>@Appointments.PatientName</td>
+                    <td>@Appointments.DoctorName</td>
+                    <td>@Appointments.AppointmentDateTime</td>
+                    <td>@Appointments.Reason</td>
+                    <td>@Appointments.Status</td>
+                    <td>
+
+                        <a href="@Url.Action("EditAppointment", "Appointment", new { id = Appointments.AppointmentID })" class="btn btn-info">Edit</a>
+
+                        <form method="post" action="@Url.Action("DeleteAppointment", "Appointment", new { appointmentId = Appointments.AppointmentID })" onsubmit="return confirm('Are you sure you want to delete this Appointment?');" style="display: inline-block; margin-right: 3px;">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+
+</div>

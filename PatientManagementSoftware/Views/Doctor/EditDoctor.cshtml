@@ -1,0 +1,44 @@
+﻿
+@model PatientManagementSoftware.Models.DoctorViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper p-5">
+    <h2>Edit Doctor Details</h2>
+
+    @using (Html.BeginForm("EditDoctor", "Doctor")) // Specify controller and action
+    {
+        @Html.AntiForgeryToken() // Add CSRF protection
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.DoctorID)
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, "Name:")
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" , required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Specialization, "Specialization:")
+            @Html.TextBoxFor(m => m.Specialization, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Specialization, "", new { @class = "text-danger" , required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.ContactNumber, "Contact Number:")
+            @Html.TextBoxFor(m => m.ContactNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ContactNumber, "", new { @class = "text-danger", required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Availability, "Availability:")
+            @Html.TextBoxFor(m => m.Availability, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Availability, "", new { @class = "text-danger", required = "required" })
+        </div>
+
+        <input type="submit" value="Update Doctor" class="btn btn-primary" />
+    }
+</div>
